@@ -1,12 +1,20 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: [
-    './app/index.js',
+    path.resolve(__dirname, '../app/index.js'),
   ],
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'bundle.js',
+    publicPath: '/',
+  },
+  // webpack-dev-server 服務器配置相關，自動刷新!
+  devServer: {
+    historyApiFallback: true,
+    hot: false,
+    inline: true,
   },
   module: {
     loaders: [
@@ -30,7 +38,15 @@ module.exports = {
       },
     ],
   },
-  plugins: [],
+  plugins: [
+    // html-webpack-plugin 能夠動態產生 index.html
+    // inject = true, index.html 可以不用加<script src="bundle.js">, 會自己加载这些 bundle.js
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../index.html'),
+      filename: './index.html',
+      inject: true,
+    }),
+  ],
   resolve: {
     // require時省略的擴展名，如：require（'module'）不需要module.js
     extensions: ['.js', '.vue'],

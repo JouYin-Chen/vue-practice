@@ -20,6 +20,20 @@
   4. 把步驟1下載的文件放裡面
   5. 如果沒有找到, 重開Sublime
 
+# v2 webpack-dev-server
+可以即時產生一個 server 方便看執行結果, 自動刷新
+```
+npm install -g webpack-dev-server
+```
+## server 引入 index.html
+install webpack plugins => html-webpack-plugin
+```
+npm install -DE html-webpack-plugin
+```
+
+## open in Browser
+* URL http://localhost:8080/
+
 # Start
 ```
 npm run start
@@ -71,6 +85,17 @@ Error: Couldn't find preset "env" relative to directory
 ```
 以上問題，皆已解決, 只用以紀錄。
 
+# 新增webpack-dev-server ERROR
+
+## webpack version
+```
+Cannot find module 'webpack/bin/config-yargs'
+```
+
+### resolve
+```
+sudo npm i -g webpack
+```
+
 # Reference
  From: https://blog.guowenfh.com/2016/03/24/vue-webpack-01-base/
-
